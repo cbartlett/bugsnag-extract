@@ -81,6 +81,8 @@ project = client.projects(organization.id).find do |proj|
   options[:project_name].nil? || proj.name == options[:project_name]
 end
 
+raise "Project not found" if project.nil?
+
 # Get the first page of events, we can only get 30 per page
 events = client.error_events(project.id, options[:error_id])
 
